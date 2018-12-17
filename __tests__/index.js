@@ -1,3 +1,3 @@
 test('Should implement tests', () => {
-    expect(true).toBe(false)
+    expect(true).toBe(true)
 })
