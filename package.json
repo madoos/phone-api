@@ -11,7 +11,7 @@
     "precommit": "lint-staged",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "changelog": "conventional-changelog -p eslint -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
-    "serve:coverage": "http-server coverage/ -o",
+    "serve:coverage": "http-server coverage/lcov-report -o",
     "fixtures": "node __fixtures__/index.js"
   },
   "keywords": [],
