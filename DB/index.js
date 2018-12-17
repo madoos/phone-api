@@ -3,6 +3,8 @@ const schemas = require('./schemas');
 const fixtures = require('../__fixtures__');
 const { asyncMapParallel } = require('./utils');
 
+let _singletonInstance;
+
 class DB {
     constructor({ url, options = {} }) {
         this._url = url;
@@ -15,6 +17,15 @@ class DB {
 
     static create(...args) {
         return new DB(...args);
+    }
+
+    static createOnce(opt = {}) {
+        if (_singletonInstance) {
+            return _singletonInstance;
+        }
+
+        _singletonInstance = DB.create(opt);
+        return _singletonInstance;
     }
 
     async connect() {
