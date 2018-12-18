@@ -31,11 +31,11 @@ Develop env:
 
 Docker env:
 
-- `./bin/up.sh`: make docker-compose up and load fixtures
+- `.bin/up.sh`: make docker-compose up and load fixtures (see USER_TOKEN in docker-compose.yml)
 
 Clear:
 
-- `./bin/down.sh`: make docker-compose stop and rm and remove database data
+- `.bin/down.sh`: make docker-compose stop and rm and remove database data
 
 IMPORTANT:
 
