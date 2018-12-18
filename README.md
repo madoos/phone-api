@@ -1,8 +1,8 @@
 # Phone API
 
 - [Prerequisites](#Prerequisites)
-- [How to launch the app?](#How-to-launch-the-app?)
-- [How to consume the app?](#How-to-launch-the-app?)
+- [How to launch the app?](#How-to-launch-the-app)
+- [How to consume the app?](#How-to-launch-the-app)
 - [API documentation](#API-documentation)
 - [Develop conventions](#Develop-conventions)
 - [Development approach](#Development-approach)
@@ -112,6 +112,7 @@ The API specification is written in swagger. To obtain documentation go to `http
 - Linter with eslint
 - Automatic code format with prettier-eslint
 - Automatic changelog creation `npm run changelog`
+- Use mongoose to maintain the data integrity in mongo
 
 ## Development approach
 
