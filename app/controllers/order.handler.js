@@ -5,12 +5,21 @@ const sumPrices = pipe(
     reduce(add, 0)
 );
 
-const calculateOrder = (stock, phones) => {
-    const available = innerJoin(eqProps('_id'), stock, phones);
-    return { phones : available, total : sumPrices(available) };
+const availableStock = (stock, phones) => {
+    return innerJoin(eqProps('_id'), stock, phones);
+};
+
+const calculateOrder = phones => {
+    return { phones : phones, total : sumPrices(phones) };
+};
+
+const isValidOrder = (availablePhones, phones) => {
+    return availablePhones.length === phones.length;
 };
 
 module.exports = {
+    availableStock,
     calculateOrder,
+    isValidOrder,
     sumPrices
 };

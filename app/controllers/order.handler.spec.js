@@ -1,4 +1,9 @@
-const { calculateOrder, sumPrices } = require('./order.handler');
+const {
+    calculateOrder,
+    sumPrices,
+    availableStock,
+    isValidOrder
+} = require('./order.handler');
 
 test('.sumPrices should sum prices', () => {
     expect(sumPrices([{ price : 10 }, { price : 20 }])).toEqual(30);
@@ -7,22 +12,41 @@ test('.sumPrices should sum prices', () => {
 });
 
 test('.calculateOrder should make a order data', () => {
-    const stock = [
-        { _id : 'a1', price : 10 },
-        { _id : 'a2', price : 20 },
-        { _id : 'a3', price : 30 }
-    ];
-
     const phones = [
         { _id : 'a1', price : 10 },
         { _id : 'a2', price : 20 },
         { _id : 'b2', price : 20 }
     ];
 
-    const order = calculateOrder(stock, phones);
+    const order = calculateOrder(phones);
 
     expect(order).toEqual({
-        phones : [{ _id : 'a1', price : 10 }, { _id : 'a2', price : 20 }],
-        total  : 30
+        phones : [
+            { _id : 'a1', price : 10 },
+            { _id : 'a2', price : 20 },
+            { _id : 'b2', price : 20 }
+        ],
+        total : 50
     });
+});
+
+test('.availableStock should get the available stock', () => {
+    const phones = [{ _id : 'a1', price : 10 }];
+
+    const stock = [
+        { _id : 'a1', price : 10 },
+        { _id : 'a2', price : 20 },
+        { _id : 'b2', price : 20 }
+    ];
+
+    expect(availableStock(stock, phones)).toEqual([{ _id : 'a1', price : 10 }]);
+    expect(availableStock(stock, [])).toEqual([]);
+});
+
+test('.isValidOrder should return a boolean ', () => {
+    const phones = [{ _id : 'a1', price : 10 }];
+    const stock = [{ _id : 'a1', price : 10 }];
+
+    expect(isValidOrder(phones, stock)).toEqual(true);
+    expect(isValidOrder(phones, [])).toEqual(false);
 });

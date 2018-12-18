@@ -5,14 +5,22 @@ const {
     projection,
     background
 } = require('express-flow-extensions');
-const { hasData, isEmpty, hasError, debug } = require('../utils');
+const {
+    hasData,
+    isEmpty,
+    hasError,
+    debug,
+    isInvalidOrder,
+    isValidOrder
+} = require('../utils');
 const controllers = require('../controllers');
 const validation = require('./validation');
 const {
     OK,
     NOT_FOUND,
     INTERNAL_SERVER_ERROR,
-    CREATED
+    CREATED,
+    UNPROCESSABLE_ENTITY
 } = require('http-status');
 
 const healthCheck = createRouter([
@@ -53,9 +61,10 @@ const order = createRouter([
                 phones   : 'body.data'
             }),
             controllers.order.create,
-            background(debug('New Order Created:')),
+            background(debug('Order:')),
             withStatus({
-                [CREATED]               : hasData,
+                [CREATED]               : isValidOrder,
+                [UNPROCESSABLE_ENTITY]  : isInvalidOrder,
                 [INTERNAL_SERVER_ERROR] : hasError
             })
         )

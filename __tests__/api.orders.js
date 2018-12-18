@@ -1,7 +1,7 @@
 const mocks = require('../__mocks__/_handler')
 const {api, user, db} = mocks.setEnvironment()
 const {prop} = require('ramda')
-const {BAD_REQUEST, CREATED} = require('http-status')
+const {BAD_REQUEST, CREATED, UNPROCESSABLE_ENTITY} = require('http-status')
 const {allToJSON} = require('../app/utils')
 const {take} = require('ramda')
 
@@ -34,4 +34,30 @@ test(`[POST ${CREATE_ORDER_ENDPOINT}] Should respond created`, async () => {
 
     expectedProps.forEach(prop => expect(response).toHaveProperty(prop))
     expect(response.phones).toEqual(selected)
+})
+
+test(`[POST ${CREATE_ORDER_ENDPOINT}] Should respond invalid order`, async () => {
+    const selected = [
+        {
+            _id         : '5c1919d8b673389f9b9bc5ff',
+            img         : 'http://lorempixel.com/640/480',
+            name        : 'quod totam eius',
+            description : 'Eius quia quia aut.',
+            price       : 10.1
+        }
+    ]
+
+    const response = await api
+        .post(CREATE_ORDER_ENDPOINT)
+        .send({data : selected})
+        .set({Authorization : user.token})
+        .expect(UNPROCESSABLE_ENTITY)
+        .end()
+        .then(prop('body'))
+
+    expect(response).toEqual({
+        error        : 'INVALID_ORDER',
+        msg          : 'Invalid order, some phones not found',
+        invalidOrder : true
+    })
 })

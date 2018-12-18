@@ -10,7 +10,8 @@ const {
     assocPath,
     clone,
     split,
-    path
+    path,
+    propEq
 } = require('ramda');
 
 const asyncMapParallel = curry((f, xs) => {
@@ -47,6 +48,10 @@ const projectPaths = curry((descriptor, data) => {
     }, clone(data));
 });
 
+const isInvalidOrder = propEq('invalidOrder', true);
+
+const isValidOrder = order => !!order._id;
+
 module.exports = {
     debug,
     isEmpty,
@@ -55,5 +60,7 @@ module.exports = {
     asyncMapParallel,
     toJson,
     allToJSON,
-    projectPaths
+    projectPaths,
+    isInvalidOrder,
+    isValidOrder
 };
