@@ -28,3 +28,7 @@ test('Should clear fixtures in database', async () => {
     expect(await Phone.find()).toHaveLength(0)
     expect(await Order.find()).toHaveLength(0)
 })
+
+test('.createOnce should create singleton instances', async () => {
+    expect(DB.createOnce()).toEqual(DB.createOnce())
+})
