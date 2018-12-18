@@ -8,7 +8,7 @@ const {take} = require('ramda')
 beforeAll(mocks.upDatabase)
 afterAll(mocks.tearDownDatabase)
 
-const CREATE_ORDER_ENDPOINT = '/api/order'
+const CREATE_ORDER_ENDPOINT = '/api/orders'
 
 test(`[POST ${CREATE_ORDER_ENDPOINT}] Should respond bad request when the data do not correspond with phones`, async () => {
     const response = await api

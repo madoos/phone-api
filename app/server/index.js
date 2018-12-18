@@ -32,8 +32,8 @@ server.use(
         apiRouter.use('/docs', middleware.APIDocs()),
         middleware.fakeAuthentication,
         routers.healthCheck,
-        phoneRouter.use('/phone', routers.phone),
-        orderRouter.use('/order', routers.order)
+        phoneRouter.use('/phones', routers.phone),
+        orderRouter.use('/orders', routers.order)
     )
 );
 

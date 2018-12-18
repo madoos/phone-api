@@ -6,7 +6,7 @@ const {OK, NOT_FOUND} = require('http-status')
 beforeAll(mocks.upDatabase)
 afterAll(mocks.tearDownDatabase)
 
-const ALL_PHONES_ENDPOINT = '/api/phone'
+const ALL_PHONES_ENDPOINT = '/api/phones'
 
 test(`[GET ${ALL_PHONES_ENDPOINT}] Should list all phones with status 200`, async () => {
     const response = await api
