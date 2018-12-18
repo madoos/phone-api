@@ -71,6 +71,8 @@
     "nodemon": "^1.18.9",
     "promisify-supertest": "^1.0.0",
     "ramda": "^0.26.1",
-    "supertest": "^3.3.0"
+    "supertest": "^3.3.0",
+    "swagger-ui-express": "^4.0.2",
+    "yamljs": "^0.3.0"
   }
 }

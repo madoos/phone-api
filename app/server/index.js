@@ -27,9 +27,10 @@ const phoneRouter = Router();
 const orderRouter = Router();
 
 server.use(
-    middleware.fakeAuthentication,
     apiRouter.use(
         '/api',
+        apiRouter.use('/docs', middleware.APIDocs()),
+        middleware.fakeAuthentication,
         routers.healthCheck,
         phoneRouter.use('/phone', routers.phone),
         orderRouter.use('/order', routers.order)

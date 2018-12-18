@@ -1,4 +1,7 @@
 const crypto = require('crypto');
+const { join } = require('path');
+const YAML = require('yamljs');
+const api = YAML.load(join(__dirname, '../swagger.yml'));
 
 module.exports = {
     user : {
@@ -8,6 +11,7 @@ module.exports = {
         url : process.env.DB_URL || 'mongodb://0.0.0.0:27017/masmovil'
     },
     server : {
-        port : process.env.SERVER_PORT || 3000
+        port : process.env.SERVER_PORT || 3000,
+        api
     }
 };
