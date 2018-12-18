@@ -46,11 +46,8 @@ IMPORTANT:
 
 To consume data you have to be authenticated.
 The application does not have real authentication but simulates one through middleware.
-
 When the server is up, it shows by console the authentication token.
-
 The token is generated dynamically and changes every time the application is launched.
-
 If you want the token not to change, you can use the environment variable USER_TOKEN
 
 Example:
