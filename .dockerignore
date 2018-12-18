@@ -1,0 +1,11 @@
+.npm
+.git
+.gitignore
+.editorconfig
+node_modules
+.DS_Store
+npm-debug.log
+*.crt
+*.key
+*.pem
+.vscode

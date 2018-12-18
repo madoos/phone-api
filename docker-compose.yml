@@ -1,0 +1,22 @@
+version: '2'
+services:
+  api:
+    build: .
+    tty: true
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production
+      - USER_TOKEN=Bearer 2v1gd6u4ko
+      - DB_URL=mongodb://db/masmovil
+  db:
+    image: mongo:latest
+    tty: true
+    ports:
+      - 27017:27017
+    volumes:
+      - ./.data/mongo/:/data/db
