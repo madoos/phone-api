@@ -26,7 +26,7 @@ test(`[POST ${CREATE_ORDER_ENDPOINT}] Should respond created`, async () => {
 
     const response = await api
         .post(CREATE_ORDER_ENDPOINT)
-        .send(selected)
+        .send({data : selected})
         .set({Authorization : user.token})
         .expect(CREATED)
         .end()

@@ -9,7 +9,9 @@ const phone = Joi.object().keys({
     price       : Joi.number().required(),
     __v         : Joi.number()
 });
-const phones = Joi.array().items(phone);
+const phones = Joi.array()
+    .items(phone)
+    .required();
 
 module.exports = {
     phone,

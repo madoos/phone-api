@@ -43,12 +43,14 @@ const order = createRouter([
         method     : 'POST',
         path       : '/',
         validation : {
-            body : validation.phones
+            body : {
+                data : validation.phones
+            }
         },
         handler : flow(
             projection({
                 customer : 'user',
-                phones   : 'body'
+                phones   : 'body.data'
             }),
             controllers.order.create,
             background(debug('New Order Created:')),
