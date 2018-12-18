@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/madoos/phone-api.svg?branch=develop)](https://travis-ci.org/madoos/phone-api)
+
+[![Coverage Status](https://coveralls.io/repos/github/madoos/phone-api/badge.svg?branch=develop)](https://coveralls.io/github/madoos/phone-api?branch=develop)
+
 # Phone API
 
 - [Prerequisites](#Prerequisites)
