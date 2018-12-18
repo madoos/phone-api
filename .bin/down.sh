@@ -1,5 +1,5 @@
 #!/usr/bin/env bash -e
 
-docker-compose stop db
-docker-compose rm -f db
+docker-compose stop
+docker-compose rm -f
 rm -rf ./.data
