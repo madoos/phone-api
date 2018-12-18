@@ -32,7 +32,7 @@ server.use(
         '/api',
         routers.healthCheck,
         phoneRouter.use('/phone', routers.phone),
-        orderRouter.use('/order', routers.phone)
+        orderRouter.use('/order', routers.order)
     )
 );
 

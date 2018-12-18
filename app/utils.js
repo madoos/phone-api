@@ -1,5 +1,5 @@
 const { EOL } = require('os');
-const { complement, isEmpty, is, allPass, curry } = require('ramda');
+const { complement, isEmpty, is, allPass, curry, pipe, map } = require('ramda');
 
 const asyncMapParallel = curry((f, xs) => {
     const requests = xs.map(f);
@@ -17,10 +17,19 @@ const hasError = is(Error);
 const notEmpty = complement(isEmpty);
 const hasData = allPass([complement(hasError), notEmpty]);
 
+const toJson = pipe(
+    JSON.stringify,
+    JSON.parse
+);
+
+const allToJSON = map(toJson);
+
 module.exports = {
     debug,
     isEmpty,
     hasData,
     hasError,
-    asyncMapParallel
+    asyncMapParallel,
+    toJson,
+    allToJSON
 };
