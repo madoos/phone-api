@@ -7,7 +7,7 @@
     "start": "node app/index.js",
     "dev": "docker-compose up -d db && npm run fixtures && nodemon app/index.js",
     "dev:clear": ".bin/down.sh",
-    "test": "jest --coverage --verbose --forceExit",
+    "test": "jest --coverage --verbose",
     "tdd": "npm run test -- --watchAll",
     "prepublishOnly": "nsp check",
     "pretest": "eslint .",

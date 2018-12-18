@@ -42,7 +42,7 @@ class DB {
     }
 
     async close() {
-        this.connection.close();
+        this.connection && this.connection.close();
         return this;
     }
 
