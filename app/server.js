@@ -7,6 +7,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
+const middleware = require('./middleware');
 const routers = require('./routes');
 
 const server = expressExtensions(express());
@@ -26,8 +27,10 @@ const phoneRouter = Router();
 const orderRouter = Router();
 
 server.use(
+    middleware.fakeAuthentication,
     apiRouter.use(
         '/api',
+        routers.healthCheck,
         phoneRouter.use('/phone', routers.phone),
         orderRouter.use('/order', routers.phone)
     )

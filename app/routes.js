@@ -3,6 +3,14 @@ const { createRouter, withStatus, flow } = expressExtensions;
 const utils = require('./utils');
 const controllers = require('./controllers');
 
+const healthCheck = createRouter([
+    {
+        method  : 'GET',
+        path    : '/health',
+        handler : flow(controllers.healthCheck)
+    }
+]);
+
 const phone = createRouter([
     {
         method  : 'GET',
@@ -19,5 +27,6 @@ const phone = createRouter([
 ]);
 
 module.exports = {
+    healthCheck,
     phone
 };
