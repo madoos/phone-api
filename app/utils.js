@@ -1,5 +1,6 @@
 const { EOL } = require('os');
 const { curry } = require('ramda');
+const { complement, isEmpty, is, allPass } = require('ramda');
 
 const debug = curry((tag, data) => {
     process.stdout.write(tag);
@@ -8,4 +9,13 @@ const debug = curry((tag, data) => {
     process.stdout.write(EOL);
 });
 
-module.exports = { debug };
+const hasError = is(Error);
+const notEmpty = complement(isEmpty);
+const hasData = allPass([complement(hasError), notEmpty]);
+
+module.exports = {
+    debug,
+    isEmpty,
+    hasData,
+    hasError
+};

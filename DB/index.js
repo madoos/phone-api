@@ -19,11 +19,10 @@ class DB {
         return new DB(...args);
     }
 
-    static createOnce(opt = {}) {
+    static createOnce(opt) {
         if (_singletonInstance) {
             return _singletonInstance;
         }
-
         _singletonInstance = DB.create(opt);
         return _singletonInstance;
     }

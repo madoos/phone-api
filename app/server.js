@@ -1,10 +1,13 @@
 const express = require('express');
+const { Router } = express;
 const expressExtensions = require('express-flow-extensions');
 
 const enableSecurity = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+
+const routers = require('./routes');
 
 const server = expressExtensions(express());
 
@@ -17,5 +20,17 @@ server
     .use(methodOverride('X-HTTP-Method')) // Microsoft
     .use(methodOverride('X-HTTP-Method-Override')) // Google/GData
     .use(methodOverride('X-Method-Override')); // IBM
+
+const apiRouter = Router();
+const phoneRouter = Router();
+const orderRouter = Router();
+
+server.use(
+    apiRouter.use(
+        '/api',
+        phoneRouter.use('/phone', routers.phone),
+        orderRouter.use('/order', routers.phone)
+    )
+);
 
 module.exports = server;
