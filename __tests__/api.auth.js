@@ -1,6 +1,7 @@
 const mocks = require('../__mocks__/_handler')
 const {api, user} = mocks.setEnvironment()
 const {prop} = require('ramda')
+const {UNAUTHORIZED, OK} = require('http-status')
 
 beforeAll(mocks.upDatabase)
 afterAll(mocks.tearDownDatabase)
@@ -11,7 +12,7 @@ test(`[GET ${HEALTH_CHECK_ENDPOINT}] Should get status 200 for authorized user`,
     const response = await api
         .get(HEALTH_CHECK_ENDPOINT)
         .set({Authorization : user.token})
-        .expect(200)
+        .expect(OK)
         .end()
         .then(prop('body'))
 
@@ -22,9 +23,9 @@ test(`[GET ${HEALTH_CHECK_ENDPOINT}] Should get status 500 for unauthorized user
     const response = await api
         .get(HEALTH_CHECK_ENDPOINT)
         .set({Authorization : 'invalid-token'})
-        .expect(500)
+        .expect(UNAUTHORIZED)
         .end()
-        .then(prop('text'))
+        .then(prop('body'))
 
-    expect(response).toEqual('UNAUTHORIZED')
+    expect(response).toEqual({error : 'UNAUTHORIZED'})
 })

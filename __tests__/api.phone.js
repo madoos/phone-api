@@ -1,6 +1,7 @@
 const mocks = require('../__mocks__/_handler')
 const {api, user, db} = mocks.setEnvironment()
 const {prop} = require('ramda')
+const {OK, NOT_FOUND} = require('http-status')
 
 beforeAll(mocks.upDatabase)
 afterAll(mocks.tearDownDatabase)
@@ -11,7 +12,7 @@ test(`[GET ${ALL_PHONES_ENDPOINT}] Should list all phones with status 200`, asyn
     const response = await api
         .get(ALL_PHONES_ENDPOINT)
         .set({Authorization : user.token})
-        .expect(200)
+        .expect(OK)
         .end()
         .then(prop('body'))
 
@@ -24,7 +25,7 @@ test(`[GET ${ALL_PHONES_ENDPOINT}] Should get a empty list with status 404`, asy
     const response = await api
         .get(ALL_PHONES_ENDPOINT)
         .set({Authorization : user.token})
-        .expect(404)
+        .expect(NOT_FOUND)
         .end()
         .then(prop('body'))
 

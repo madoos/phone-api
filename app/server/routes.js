@@ -1,7 +1,8 @@
 const expressExtensions = require('express-flow-extensions');
 const { createRouter, withStatus, flow } = expressExtensions;
-const utils = require('./utils');
-const controllers = require('./controllers');
+const utils = require('../utils');
+const controllers = require('../controllers');
+const { OK, NOT_FOUND, INTERNAL_SERVER_ERROR } = require('http-status');
 
 const healthCheck = createRouter([
     {
@@ -18,9 +19,9 @@ const phone = createRouter([
         handler : flow(
             controllers.phone.all,
             withStatus({
-                200 : utils.hasData,
-                404 : utils.isEmpty,
-                500 : utils.hasError
+                [OK]                    : utils.hasData,
+                [NOT_FOUND]             : utils.isEmpty,
+                [INTERNAL_SERVER_ERROR] : utils.hasError
             })
         )
     }
