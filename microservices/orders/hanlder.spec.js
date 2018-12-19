@@ -3,7 +3,7 @@ const {
     sumPrices,
     availableStock,
     isValidOrder
-} = require('.handler');
+} = require('./handler');
 
 test('.sumPrices should sum prices', () => {
     expect(sumPrices([{ price : 10 }, { price : 20 }])).toEqual(30);
