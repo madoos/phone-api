@@ -73,6 +73,29 @@ paths:
                 'total': 1398.00,
                 '__v': 0,
               }
+        '422':
+          description: INVALID ORDER
+          schema:
+            $ref: '#/definitions/order'
+          examples:
+            application/json:
+              {
+                'error': 'INVALID_ORDER',
+                'msg': 'Invalid order, some phones not found',
+                'invalidOrder': true,
+              }
+        '400':
+          description: BAD REQUEST
+          schema:
+            $ref: '#/definitions/order'
+          examples:
+            application/json:
+              {
+                'statusCode': 400,
+                'error': 'Bad Request',
+                'message': 'child "data" fails because ["data" at position 0 fails because [child "_id" fails because ["_id" with value "5c1a6495dc7b965f18c09b-c0" fails to match the required pattern: /^[0-9a-fA-F]{24}$/]]]',
+                'validation': {'source': 'body', 'keys': ['data.0._id']},
+              }
   /docs:
     get:
       description: 'HTML page for endpoints.'
