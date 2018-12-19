@@ -51,7 +51,7 @@ Docker env:
 
 Clear:
 
-- `./bin/down.sh`: make docker-compose stop and rm and remove database data
+- `.bin/down.sh`: make docker-compose stop and rm and remove database data
 
 IMPORTANT:
 
