@@ -1,7 +1,9 @@
 version: '2'
 services:
-  api:
-    build: .
+  phones-api:
+    build:
+      context: .
+      dockerfile: ./phones.Dockerfile
     tty: true
     depends_on:
       - db
@@ -11,8 +13,25 @@ services:
       - 3000:3000
     environment:
       - NODE_ENV=production
+      - DB_URL=mongodb://db/masmovil
+  orders-api:
+    build:
+      context: .
+      dockerfile: ./orders.Dockerfile
+    tty: true
+    depends_on:
+      - db
+      - phones-api
+    links:
+      - db
+      - phones-api
+    ports:
+      - 3001:3001
+    environment:
+      - NODE_ENV=production
       - USER_TOKEN=Bearer 2v1gd6u4ko
       - DB_URL=mongodb://db/masmovil
+      - API_PHONES_ALL=http://phones-api:3000/phones
   db:
     image: mongo:latest
     tty: true

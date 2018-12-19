@@ -4,3 +4,5 @@ coverage
 .data
 **/**/node_modules
 **/**/coverage
+microservices/phones/package-lock.json
+microservices/orders/package-lock.json

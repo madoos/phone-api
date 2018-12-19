@@ -9,3 +9,6 @@ npm-debug.log
 *.key
 *.pem
 .vscode
+package-lock.json
+microservices/phones/package-lock.json
+microservices/orders/package-lock.json
