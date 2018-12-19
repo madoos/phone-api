@@ -1,4 +1,4 @@
-const { debug, projectPaths } = require('core/lib/utils');
+const { debug, projectPaths } = require('core').utils;
 const config = require('./config');
 const db = require('./dbClient');
 const server = require('./server');

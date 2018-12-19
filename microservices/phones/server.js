@@ -1,8 +1,8 @@
 const { createRouter, flow, withStatus } = require('express-flow-extensions');
-const { hasData, isEmpty, hasError } = require('core/lib/utils');
+const { hasData, isEmpty, hasError } = require('core').utils;
 const { OK, NOT_FOUND, INTERNAL_SERVER_ERROR } = require('http-status');
 const config = require('./config');
-const server = require('core/lib/server');
+const server = require('core').server;
 const controller = require('./controller');
 
 const app = server.create({

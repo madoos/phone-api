@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const schemas = require('./schemas');
 const fixtures = require('../__fixtures__');
-const { asyncMapParallel } = require('../lib/utils');
+const { asyncMapParallel } = require('../core/utils');
 
 let _singletonInstance;
 

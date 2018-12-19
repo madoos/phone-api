@@ -10,10 +10,9 @@ const {
     background,
     projection
 } = require('express-flow-extensions');
-const { isValidOrder, isInvalidOrder, hasError } = require('core/lib/utils');
-const { debug } = require('core/lib/utils');
+const { server, utils } = require('core');
+const { isValidOrder, isInvalidOrder, hasError, debug } = utils;
 const config = require('./config');
-const server = require('core/lib/server');
 const controller = require('./controller');
 const middleware = require('./middleware');
 const validation = require('./validation');
