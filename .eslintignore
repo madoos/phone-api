@@ -1,0 +1,5 @@
+**/node_modules
+**/coverage
+__tests__
+node_modules
+coverage
