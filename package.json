@@ -17,7 +17,7 @@
     "changelog": "conventional-changelog -p eslint -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "serve:coverage": "http-server coverage/lcov-report -o",
     "fixtures": "node DB/populate.js",
-    "db:up": "docker-compose up -d"
+    "db:up": "docker-compose up -d db"
   },
   "keywords": [],
   "author": {
