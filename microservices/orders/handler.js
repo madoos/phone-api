@@ -14,7 +14,7 @@ const calculateOrder = phones => {
 };
 
 const isValidOrder = (availablePhones, phones) => {
-    return availablePhones.length === phones.length;
+    return phones.length > 0 && availablePhones.length === phones.length;
 };
 
 module.exports = {

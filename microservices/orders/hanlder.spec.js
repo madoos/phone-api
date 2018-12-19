@@ -3,7 +3,7 @@ const {
     sumPrices,
     availableStock,
     isValidOrder
-} = require('./order.handler');
+} = require('./handler');
 
 test('.sumPrices should sum prices', () => {
     expect(sumPrices([{ price : 10 }, { price : 20 }])).toEqual(30);
@@ -49,4 +49,5 @@ test('.isValidOrder should return a boolean ', () => {
 
     expect(isValidOrder(phones, stock)).toEqual(true);
     expect(isValidOrder(phones, [])).toEqual(false);
+    expect(isValidOrder([], [])).toEqual(false);
 });

@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   version: '1.0.0'
-  title: Microservice MÁSMÓVIL
+  title: Order
 host: <HOST>
 basePath: /api
 schemes:
@@ -16,58 +16,6 @@ consumes:
 produces:
   - application/json
 paths:
-  /phones:
-    get:
-      security:
-        - Bearer: []
-      description: 'Get phones catalog.'
-      consumes:
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: 'array'
-            items:
-              $ref: '#/definitions/phone'
-          examples:
-            application/json:
-              [
-                {
-                  '_id': '5c18b086be253f6c7a799454',
-                  'img': 'http://lorempixel.com/640/480',
-                  'name': 'blanditiis sed ipsa',
-                  'description': 'quas possimus unde',
-                  'price': 337,
-                  '__v': 0,
-                },
-                {
-                  '_id': '5c18b086be253f6c7a799457',
-                  'img': 'http://lorempixel.com/640/480',
-                  'name': 'repudiandae nisi modi',
-                  'description': 'Rerum aut et.',
-                  'price': 511.99,
-                  '__v': 0,
-                },
-                {
-                  '_id': '5c18b086be253f6c7a79945a',
-                  'img': 'http://lorempixel.com/640/480',
-                  'name': 'autem labore dignissimos',
-                  'description': 'Quasi qui saepe est facilis omnis.',
-                  'price': 455.50,
-                  '__v': 0,
-                },
-              ]
-        '404':
-          description: NO DATA
-          schema:
-            type: 'array'
-            items:
-              $ref: '#/definitions/phone'
-          examples:
-            application/json: []
   /order:
     post:
       security:
@@ -124,6 +72,29 @@ paths:
                   ],
                 'total': 1398.00,
                 '__v': 0,
+              }
+        '422':
+          description: INVALID ORDER
+          schema:
+            $ref: '#/definitions/order'
+          examples:
+            application/json:
+              {
+                'error': 'INVALID_ORDER',
+                'msg': 'Invalid order, some phones not found',
+                'invalidOrder': true,
+              }
+        '400':
+          description: BAD REQUEST
+          schema:
+            $ref: '#/definitions/order'
+          examples:
+            application/json:
+              {
+                'statusCode': 400,
+                'error': 'Bad Request',
+                'message': 'child "data" fails because ["data" at position 0 fails because [child "_id" fails because ["_id" with value "5c1a6495dc7b965f18c09b-c0" fails to match the required pattern: /^[0-9a-fA-F]{24}$/]]]',
+                'validation': {'source': 'body', 'keys': ['data.0._id']},
               }
   /docs:
     get:

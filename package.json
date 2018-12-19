@@ -1,13 +1,14 @@
 {
-  "name": "masmovil-test",
+  "name": "core",
   "version": "1.0.0",
   "description": "API masmovil.",
-  "main": "index.js",
+  "main": "core.js",
   "scripts": {
-    "start": "node app/index.js",
-    "dev": "docker-compose up -d db && npm run fixtures && nodemon app/index.js",
+    "dev": "npm run db:up && npm run fixtures",
+    "dev:phones": "npm run dev && nodemon microservices/phones/index.js",
+    "dev:orders": "npm run dev && nodemon microservices/orders/index.js",
     "dev:clear": ".bin/down.sh",
-    "test": "jest --coverage --verbose",
+    "test": "npm run db:up && jest --runInBand --coverage --verbose --forceExit",
     "tdd": "npm run test -- --watchAll",
     "prepublishOnly": "nsp check",
     "pretest": "eslint .",
@@ -15,7 +16,8 @@
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "changelog": "conventional-changelog -p eslint -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "serve:coverage": "http-server coverage/lcov-report -o",
-    "fixtures": "node DB/populate.js"
+    "fixtures": "node DB/populate.js",
+    "db:up": "docker-compose up -d"
   },
   "keywords": [],
   "author": {
@@ -34,7 +36,6 @@
     "eslint": "^5.10.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "faker": "^4.1.0",
     "http-server": "^0.11.1",
     "husky": "^1.2.1",
     "jest": "^23.6.0",
@@ -42,7 +43,9 @@
     "lint-staged": "^8.1.0",
     "mongodb-memory-server": "^2.8.0",
     "nsp": "^3.2.1",
-    "prettier-eslint-cli": "^4.7.1"
+    "prettier-eslint-cli": "^4.7.1",
+    "nodemon": "^1.18.9",
+    "coveralls": "^3.0.2"
   },
   "lint-staged": {
     "*.js": [
@@ -61,7 +64,6 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
-    "coveralls": "^3.0.2",
     "express": "^4.16.4",
     "express-flow-extensions": "^1.0.5",
     "helmet": "^3.15.0",
@@ -69,11 +71,11 @@
     "joi-objectid": "^2.0.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.4.0",
-    "nodemon": "^1.18.9",
     "promisify-supertest": "^1.0.0",
     "ramda": "^0.26.1",
     "supertest": "^3.3.0",
     "swagger-ui-express": "^4.0.2",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "faker": "^4.1.0"
   }
 }

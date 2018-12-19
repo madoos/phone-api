@@ -1,11 +1,9 @@
-const { debug } = require('./utils');
+const { debug, projectPaths } = require('core').utils;
 const config = require('./config');
-const DB = require('../DB');
+const db = require('./dbClient');
 const server = require('./server');
-const { projectPaths } = require('./utils');
 
 const start = async opt => {
-    const db = DB.createOnce(opt.db);
     await db.connect();
     await server.listenAsync(opt.server.port);
     return opt;
@@ -18,5 +16,5 @@ start(config)
             'server.api.definitions' : Object.keys
         })
     )
-    .then(debug('App started with config:'))
-    .catch(debug('Error started app:'));
+    .then(debug('Order app started with config:'))
+    .catch(debug('Error started Order app:'));

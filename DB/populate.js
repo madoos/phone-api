@@ -1,5 +1,5 @@
-const db = require('../app/mongoClient');
-const { debug } = require('../app/utils');
+const db = require('../core/mongoClient');
+const { debug } = require('../core/utils');
 const { projection } = require('express-flow-extensions');
 const { prop, map, pipe, always } = require('ramda');
 
