@@ -1,8 +1,7 @@
-const { debug } = require('./utils');
-const config = require('./config');
-const DB = require('../DB');
+const { DB } = require('core');
+const { debug, projectPaths } = require('core/lib/utils');
 const server = require('./server');
-const { projectPaths } = require('./utils');
+const config = require('./config');
 
 const start = async opt => {
     const db = DB.createOnce(opt.db);
@@ -18,5 +17,5 @@ start(config)
             'server.api.definitions' : Object.keys
         })
     )
-    .then(debug('App started with config:'))
-    .catch(debug('Error started app:'));
+    .then(debug('Phone app started with config:'))
+    .catch(debug('Error started Phone app:'));

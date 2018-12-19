@@ -1,8 +1,8 @@
 {
-  "name": "masmovil-test",
+  "name": "core",
   "version": "1.0.0",
   "description": "API masmovil.",
-  "main": "index.js",
+  "main": "core.js",
   "scripts": {
     "start": "node app/index.js",
     "dev": "docker-compose up -d db && npm run fixtures && nodemon app/index.js",

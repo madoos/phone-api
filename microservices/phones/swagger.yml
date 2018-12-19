@@ -1,0 +1,89 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Phones
+host: <HOST>
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /phones:
+    get:
+      security:
+        - Bearer: []
+      description: 'Get phones catalog.'
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/phone'
+          examples:
+            application/json:
+              [
+                {
+                  '_id': '5c18b086be253f6c7a799454',
+                  'img': 'http://lorempixel.com/640/480',
+                  'name': 'blanditiis sed ipsa',
+                  'description': 'quas possimus unde',
+                  'price': 337,
+                  '__v': 0,
+                },
+                {
+                  '_id': '5c18b086be253f6c7a799457',
+                  'img': 'http://lorempixel.com/640/480',
+                  'name': 'repudiandae nisi modi',
+                  'description': 'Rerum aut et.',
+                  'price': 511.99,
+                  '__v': 0,
+                },
+                {
+                  '_id': '5c18b086be253f6c7a79945a',
+                  'img': 'http://lorempixel.com/640/480',
+                  'name': 'autem labore dignissimos',
+                  'description': 'Quasi qui saepe est facilis omnis.',
+                  'price': 455.50,
+                  '__v': 0,
+                },
+              ]
+        '404':
+          description: NO DATA
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/phone'
+          examples:
+            application/json: []
+  /docs:
+    get:
+      description: 'HTML page for endpoints.'
+      produces:
+        - application/html
+      responses:
+        '200':
+          description: OK
+definitions:
+  phone:
+    type: object
+    properties:
+      _id:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      price:
+        type: number
+      __v:
+        type: number
