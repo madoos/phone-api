@@ -1,5 +1,5 @@
 const config = require('./config');
 const DB = require('core').DB;
-const dbClient = DB.createOnce(config.db);
+const dbClient = DB.create(config.db);
 
 module.exports = dbClient;

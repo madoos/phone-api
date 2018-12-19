@@ -13,8 +13,6 @@ produces:
 paths:
   /phones:
     get:
-      security:
-        - Bearer: []
       description: 'Get phones catalog.'
       consumes:
         - application/x-www-form-urlencoded
