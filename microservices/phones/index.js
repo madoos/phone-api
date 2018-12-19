@@ -1,10 +1,9 @@
-const { DB } = require('core');
 const { debug, projectPaths } = require('core/lib/utils');
-const server = require('./server');
 const config = require('./config');
+const db = require('./dbClient');
+const server = require('./server');
 
 const start = async opt => {
-    const db = DB.createOnce(opt.db);
     await db.connect();
     await server.listenAsync(opt.server.port);
     return opt;
