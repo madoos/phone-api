@@ -1,0 +1,121 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Order
+host: <HOST>
+basePath: /api
+schemes:
+  - http
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /order:
+    post:
+      security:
+        - Bearer: []
+      description: 'Created new order for authenticate user'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: data
+          description: Array of phones.
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/phone'
+      responses:
+        '201':
+          description: CREATED
+          schema:
+            $ref: '#/definitions/order'
+          examples:
+            application/json:
+              {
+                '_id': '5c18717e6ec08568020eec61',
+                'customer':
+                  {
+                    '_id': '5c185f0f409e4b610506ef1d',
+                    'name': 'Kelli',
+                    'surname': 'Welch',
+                    'email': 'Yvonne_Bins19@gmail.com',
+                    '__v': 0,
+                  },
+                'phones':
+                  [
+                    {
+                      '_id': '5c185f0f409e4b610506ef1e',
+                      'img': 'http://lorempixel.com/640/480',
+                      'name': 'quod totam eius',
+                      'description': 'Eius quia quia aut.',
+                      'price': 403.50,
+                      '__v': 0,
+                    },
+                    {
+                      '_id': '5c185f0f409e4b610506ef1f',
+                      'img': 'http://lorempixel.com/640/480',
+                      'name': 'eaque aspernatur totam',
+                      'description': 'Nisi corporis labore excepturi dolore.',
+                      'price': 994.50,
+                      '__v': 0,
+                    },
+                  ],
+                'total': 1398.00,
+                '__v': 0,
+              }
+  /docs:
+    get:
+      description: 'HTML page for endpoints.'
+      produces:
+        - application/html
+      responses:
+        '200':
+          description: OK
+definitions:
+  user:
+    type: object
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+      surname:
+        type: string
+      email:
+        type: string
+  phone:
+    type: object
+    properties:
+      _id:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      price:
+        type: number
+      __v:
+        type: number
+  order:
+    type: object
+    properties:
+      customer:
+        $ref: '#/definitions/user'
+      phones:
+        type: array
+        items:
+          $ref: '#/definitions/phone'
+      total:
+        type: number
